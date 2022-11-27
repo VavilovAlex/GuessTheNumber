@@ -44,9 +44,10 @@ public class AnimatedText
 
         foreach (var t in _text)
         {
+            if (IsAnimationSkipped()) break;
+                
             Console.Write(t);
             
-            if (IsAnimationSkipped()) delay = 1;
             Thread.Sleep(delay);
         }
         
@@ -61,6 +62,8 @@ public class AnimatedText
 
         for (var i = 0; i < _text.Length; i++)
         {
+            if (IsAnimationSkipped()) break;
+
             var index = 0;
 
             do
@@ -78,7 +81,6 @@ public class AnimatedText
             Console.SetCursorPosition(_x, _y);
             Console.Write(withSpaces);
             
-            if (IsAnimationSkipped()) delay = 1;
             Thread.Sleep(delay);
         }
         
@@ -100,6 +102,8 @@ public class AnimatedText
                 Console.SetCursorPosition(_x, _y - j - 1);
                 Console.Write(emptyLine);
             }
+
+            if (IsAnimationSkipped()) break;
 
             for (var charIndex = 0; charIndex < _text.Length; charIndex++)
             {
@@ -123,7 +127,6 @@ public class AnimatedText
                 Console.Write(_text[charIndex]);
             }
 
-            if (IsAnimationSkipped()) delay = 1;
             Thread.Sleep(delay);
         }
         
@@ -176,7 +179,8 @@ public class AnimatedText
     private bool IsAnimationSkipped()
     {
         if (!Console.KeyAvailable) return false;
-
+        Console.SetCursorPosition(_x, _y);
+        Console.Write(_text);
         Console.ReadKey(true);
         return true;
     }
