@@ -11,21 +11,21 @@ public class GameClassic : GameMode
     private int AskForGuess()
     {
         Console.Clear();
-        
+
 
         for (var i = 0; i < _guesses.Length - _tries; i++)
         {
             Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 2 + i);
-            
+
             var hint = _guesses[i] > _number ? "Too high" : "Too low";
-            
+
             Console.Write($"{_guesses[i]} is {hint}");
         }
 
-        
+
         Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 5);
-        Console.Write("Guess: ");
-        
+        Console.Write($"Guess {6 - _tries} / 5: ");
+
 
         var input = new TextInput((str) =>
         {
@@ -33,15 +33,16 @@ public class GameClassic : GameMode
             if (!int.TryParse(str, out var val)) return false;
             return val is >= 0 and <= 100;
         });
-        
+
         return int.Parse(input.ReadLine());
     }
+
     public override void Display()
     {
         _number = new Random().Next(1, 100);
 
         var won = false;
-        
+
         while (_tries > 0)
         {
             var guess = AskForGuess();
@@ -52,19 +53,21 @@ public class GameClassic : GameMode
                 won = true;
                 break;
             }
-            
+
             _tries--;
         }
 
         if (won)
         {
             Won();
-        } else{
-            Lost();    
         }
-        
+        else
+        {
+            Lost();
+        }
+
         Thread.Sleep(1000);
-        
+
         App.ChangePage(new MainPage());
     }
 }

@@ -37,7 +37,7 @@ public class GameDivideAndFind : GameMode
         {
             var line = new StringBuilder();
             var offset = linesLength * l;
-            for (int i = offset; i < offset + linesLength; i++)
+            for (var i = offset; i < offset + linesLength; i++)
             {
                 if (i < 10)
                 {
@@ -122,10 +122,16 @@ public class GameDivideAndFind : GameMode
         Console.SetCursorPosition(_startX, _startY - 3);
         
         ConsoleColor.SetDisabled();
-        Console.Write("Press Enter or SpaceBar to make a guess...");
+        Console.Write("Press Enter or SpaceBar to make a guess.");
 
+        var endX = _startX + _lines![0].Length;
+        
         while (true)
         {
+            Console.SetCursorPosition(endX - 3, _startY - 3);
+            
+            Console.Write($"{6-_tries}/5");
+            
             var x = _position % 25;
             var y = _position / 25;
 
