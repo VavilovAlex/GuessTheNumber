@@ -12,6 +12,8 @@ public abstract class GameMode : Page
             HorizontalCenter, VerticalCenter - 5, Alignment.Center);
         
         message.ImFeelingLucky();
+
+        Console.ReadKey();
     }
 
     protected void Lost()
@@ -23,5 +25,7 @@ public abstract class GameMode : Page
             HorizontalCenter, VerticalCenter - 5, Alignment.Center);
         
         message.ImFeelingLucky();
+        
+        Console.ReadKey();
     }
 }
