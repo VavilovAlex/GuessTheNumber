@@ -1,7 +1,7 @@
 ﻿namespace GuessTheNumber.Menu;
 using ConsoleColor = GuessTheNumber.Utils.ConsoleColor;
 
-public class Menu
+public class ConsoleMenu
 {
     private List<MenuItem> _items;
     private int _selectedIndex = 0;
@@ -9,7 +9,7 @@ public class Menu
     private int _x = 0;
     private int _y = 0;
 
-    public Menu(List<MenuItem> items, int x, int y)
+    public ConsoleMenu(List<MenuItem> items, int x, int y)
     {
         _items = items;
         _selectedIndex = 0;
@@ -39,6 +39,16 @@ public class Menu
         ConsoleColor.SetPrimary();
     }
 
+    private void Hint()
+    {
+        ConsoleColor.SetDisabled();
+        Console.SetCursorPosition(5,2);
+        Console.Write("Use W/S or Up/Down arrows to navigate");
+        Console.SetCursorPosition(5,3);
+        Console.Write("'Enter' | 'Right arrow' | 'D' to select");
+        ConsoleColor.SetPrimary();
+    }
+
     private void Prev()
     {
         if (_selectedIndex > 0)
@@ -57,6 +67,7 @@ public class Menu
     
     public void Enter()
     {
+        Hint();
         Draw();
         while (true)
         {
