@@ -9,7 +9,7 @@ public class StartPage : Page
     {
         Console.Clear();
         Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 5);
-        Console.Write("Name: ");
+        Console.Write("Your name: ");
 
         var input = new TextInput(FilterMode.RegexString, new Regex("^[A-Za-z0-9]{0,20}$"));
         return input.ReadLine();

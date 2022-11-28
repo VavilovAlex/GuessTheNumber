@@ -20,13 +20,13 @@ public class MainPage : Page
 
         var items = new List<MenuItem>
         {
-            new("Start game (Classic)", () => App.ChangePage(new GameClassic())),
-            new("Start game (Divide and find)", () => App.ChangePage(new GameDivideAndFind())),
+            new("Play \"Classic\"", () => App.ChangePage(new GameClassic())),
+            new("Play \"Divide and find\"", () => App.ChangePage(new GameDivideAndFind())),
             new("Change name", () => App.ChangePage(new StartPage())),
             new("Exit", Bye)
         };
 
-        var menu = new Menu.Menu(items, x, y);
+        var menu = new ConsoleMenu(items, x, y);
 
         menu.Enter();
     }
