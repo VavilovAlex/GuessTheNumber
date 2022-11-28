@@ -21,7 +21,7 @@ public class GameDivideAndFind : GameMode
     public GameDivideAndFind()
     {
         _number = new Random().Next(0, 100);
-        CutNumbersIntoLines(0, 100, 4);
+        CutNumbersIntoLines(0, 99, 4);
 
         _startX = HorizontalCenter - _lines![0].Length / 2;
         _startY = VerticalCenter - 4;
@@ -29,6 +29,7 @@ public class GameDivideAndFind : GameMode
 
     private void CutNumbersIntoLines(int from, int to, int lines)
     {
+        to++;
         var linesLength = (to - from) / lines;
 
         _lines = new string[lines];
@@ -36,7 +37,7 @@ public class GameDivideAndFind : GameMode
         for (var l = 0; l < lines; l++)
         {
             var line = new StringBuilder();
-            var offset = linesLength * l;
+            var offset = from + linesLength * l;
             for (var i = offset; i < offset + linesLength; i++)
             {
                 if (i < 10)
