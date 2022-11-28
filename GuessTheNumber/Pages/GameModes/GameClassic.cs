@@ -8,6 +8,9 @@ public class GameClassic : GameMode
     private int[] _guesses = new int[5];
     private int _tries = 5;
 
+    private readonly int _from = 1;
+    private readonly int _to = 100;
+
     private int AskForGuess()
     {
         Console.Clear();
@@ -31,7 +34,7 @@ public class GameClassic : GameMode
         {
             if (str == "") return true;
             if (!int.TryParse(str, out var val)) return false;
-            return val is >= 0 and <= 100;
+            return val >= _from && val <= _to;
         });
 
         return int.Parse(input.ReadLine());
@@ -39,7 +42,7 @@ public class GameClassic : GameMode
 
     public override void Display()
     {
-        _number = new Random().Next(1, 100);
+        _number = new Random().Next(_from, _to + 1);
 
         var won = false;
 
