@@ -5,16 +5,6 @@ namespace GuessTheNumber.Pages;
 
 public class StartPage : Page
 {
-    private string ReadName()
-    {
-        Console.Clear();
-        Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 5);
-        Console.Write("Your name: ");
-
-        var input = new TextInput(FilterMode.RegexString, new Regex("^[A-Za-z0-9]{0,20}$"));
-        return input.ReadLine();
-    }
-
     public override void Display()
     {
         var name = ReadName();
@@ -24,5 +14,15 @@ public class StartPage : Page
         App.User = user;
 
         App.ChangePage(new MainPage());
+    }
+    
+    private static string ReadName()
+    {
+        Console.Clear();
+        Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 5);
+        Console.Write("Your name: ");
+
+        var input = new TextInput(FilterMode.RegexString, new Regex("^[A-Za-z0-9]{0,20}$"));
+        return input.ReadLine();
     }
 }

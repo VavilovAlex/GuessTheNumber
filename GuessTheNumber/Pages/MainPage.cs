@@ -34,8 +34,7 @@ public class MainPage : Page
     private void Bye()
     {
         Console.Clear();
-
-
+        
         var x = HorizontalCenter;
         var y = VerticalCenter;
 

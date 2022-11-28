@@ -35,6 +35,23 @@ public class AnimatedText
                 break;
         }
     }
+    
+    public void ImFeelingLucky()
+    {
+        var rand = new Random().Next(0, 3);
+        switch (rand)
+        {
+            case 0:
+                SlowTyping();
+                break;
+            case 1:
+                RandomTyping();
+                break;
+            case 2:
+                FallingText();
+                break;
+        }
+    }
 
     public void SlowTyping(int delay = 50)
     {
@@ -60,7 +77,7 @@ public class AnimatedText
 
         var text = new char[_text.Length];
 
-        for (var i = 0; i < _text.Length; i++)
+        foreach (var _ in _text)
         {
             if (IsAnimationSkipped()) break;
 
@@ -131,23 +148,6 @@ public class AnimatedText
         }
         
         OnAnimationFinished();
-    }
-
-    public void ImFeelingLucky()
-    {
-        var rand = new Random().Next(0, 3);
-        switch (rand)
-        {
-            case 0:
-                SlowTyping();
-                break;
-            case 1:
-                RandomTyping();
-                break;
-            case 2:
-                FallingText();
-                break;
-        }
     }
 
     private void OnAnimationStarted()

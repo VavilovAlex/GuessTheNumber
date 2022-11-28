@@ -26,6 +26,46 @@ public class GameDivideAndFind : GameMode
         _startX = HorizontalCenter - _lines![0].Length / 2;
         _startY = VerticalCenter - 4;
     }
+    
+    public override void Display()
+    {
+        Console.Clear();
+
+        IntroAnimation();
+        
+        Console.SetCursorPosition(_startX, _startY - 3);
+        
+        ConsoleColor.SetDisabled();
+        Console.Write("Press Enter or SpaceBar to make a guess.");
+
+        var endX = _startX + _lines![0].Length;
+        
+        while (true)
+        {
+            ConsoleColor.SetDisabled();
+            Console.SetCursorPosition(endX - 15, _startY - 3);
+            Console.Write("Tries left: ");
+
+            ConsoleColor.SetPrimary();
+            Console.Write($"{_tries}/5");
+            
+            var x = _position % 25;
+            var y = _position / 25;
+
+            MoveSelection(x, y);
+
+            if (HandleClick()) break;
+
+            _position++;
+
+            if (_position >= _right)
+            {
+                _position = _left;
+            }
+        }
+
+        App.ChangePage(new MainPage());
+    }
 
     private void CutNumbersIntoLines(int from, int to, int lines)
     {
@@ -112,46 +152,6 @@ public class GameDivideAndFind : GameMode
         }
 
         return false;
-    }
-
-    public override void Display()
-    {
-        Console.Clear();
-
-        IntroAnimation();
-        
-        Console.SetCursorPosition(_startX, _startY - 3);
-        
-        ConsoleColor.SetDisabled();
-        Console.Write("Press Enter or SpaceBar to make a guess.");
-
-        var endX = _startX + _lines![0].Length;
-        
-        while (true)
-        {
-            ConsoleColor.SetDisabled();
-            Console.SetCursorPosition(endX - 15, _startY - 3);
-            Console.Write("Tries left: ");
-
-            ConsoleColor.SetPrimary();
-            Console.Write($"{_tries}/5");
-            
-            var x = _position % 25;
-            var y = _position / 25;
-
-            MoveSelection(x, y);
-
-            if (HandleClick()) break;
-
-            _position++;
-
-            if (_position >= _right)
-            {
-                _position = _left;
-            }
-        }
-
-        App.ChangePage(new MainPage());
     }
 
     private void RedrawDisabled(bool left)
