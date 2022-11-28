@@ -1,11 +1,12 @@
 ﻿using GuessTheNumber.Text;
+using ConsoleColor = GuessTheNumber.Utils.ConsoleColor;
 
 namespace GuessTheNumber.Pages.GameModes;
 
 public class GameClassic : GameMode
 {
     private int _number = 0;
-    private int[] _guesses = new int[5];
+    private readonly int[] _guesses = new int[5];
     private int _tries = 5;
 
     private readonly int _from = 1;
@@ -25,9 +26,19 @@ public class GameClassic : GameMode
             Console.Write($"{_guesses[i]} is {hint}");
         }
 
+        ConsoleColor.SetDisabled();
+        
+        Console.SetCursorPosition(5, 2);
+        Console.Write($"Try to guess the number between {_from} and {_to}");
+        
+        Console.SetCursorPosition(5, 3);
+        Console.Write("Tries left: ");
 
+        ConsoleColor.SetPrimary();
+        Console.Write($"{_tries}/5");
+        
         Console.SetCursorPosition(HorizontalCenter - 5, VerticalCenter - 5);
-        Console.Write($"Guess {6 - _tries} / 5: ");
+        Console.Write($"Your guess: ");
 
 
         var input = new TextInput((str) =>
