@@ -128,9 +128,12 @@ public class GameDivideAndFind : GameMode
         
         while (true)
         {
-            Console.SetCursorPosition(endX - 3, _startY - 3);
-            
-            Console.Write($"{6-_tries}/5");
+            ConsoleColor.SetDisabled();
+            Console.SetCursorPosition(endX - 15, _startY - 3);
+            Console.Write("Tries left: ");
+
+            ConsoleColor.SetPrimary();
+            Console.Write($"{_tries}/5");
             
             var x = _position % 25;
             var y = _position / 25;
