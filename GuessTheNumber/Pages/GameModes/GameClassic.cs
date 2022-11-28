@@ -65,9 +65,7 @@ public class GameClassic : GameMode
         {
             Lost();
         }
-
-        Thread.Sleep(1000);
-
+        
         App.ChangePage(new MainPage());
     }
 }
