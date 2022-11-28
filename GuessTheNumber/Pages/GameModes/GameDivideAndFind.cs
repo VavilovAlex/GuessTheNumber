@@ -74,7 +74,7 @@ public class GameDivideAndFind : GameMode
 
         Console.Write(num);
 
-        Thread.Sleep(200 - (_right - _left));
+        Thread.Sleep(250 - (_right - _left) * 2);
 
         ConsoleColor.SetPrimary();
 
